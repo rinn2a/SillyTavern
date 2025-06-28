@@ -1,0 +1,7 @@
+whitelistMode: false
+enableForwardedWhitelist: false
+whitelist:
+  - ::1
+  - 127.0.0.1
+whitelistDockerHosts: false
+basicAuthMode: false
