@@ -7,6 +7,15 @@ const cliArgs = new CommandLineParser().parse(process.argv);
 globalThis.DATA_ROOT = cliArgs.dataRoot;
 globalThis.COMMAND_LINE_ARGS = cliArgs;
 process.chdir(serverDirectory);
+import fs from 'fs';
+import path from 'path';
+
+// Убедимся, что папка DATA_ROOT существует
+const dataPath = path.resolve(globalThis.DATA_ROOT);
+if (!fs.existsSync(dataPath)) {
+    fs.mkdirSync(dataPath, { recursive: true });
+    console.log(`✅ Created missing data directory at ${dataPath}`);
+}
 
 try {
     await import('./src/server-main.js');
